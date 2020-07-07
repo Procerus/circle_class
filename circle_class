@@ -1,0 +1,43 @@
+import math
+class Circle:
+    def __init__(self, radius = 1):
+        self.radius = radius
+    #Allows for changing radius and diameter while disallowing the use of negative radius 
+    @property
+    def radius(self):
+        return self._radius
+    
+    @radius.setter
+    def radius(self, val):
+        if val > 0:
+            self._radius = val
+            self._diameter = val * 2
+            self._area = (val ** 2 ) * math.pi
+        else:
+            raise ValueError('radius cannot be negative')
+    @property
+    def diameter(self):
+        return self._diameter
+
+    @diameter.setter
+    def diameter(self, val):
+        self.radius = val / 2
+        self._diameter = val
+        self._area = (val ** 2) * math.pi
+        
+    #does not allow for area to be changed manually
+    @property
+    def area(self):
+        return self._area
+    
+    @area.setter
+    def area(self, val):
+        raise AttributeError()
+        
+
+    def __str__(self):
+        return("Circle({})".format(self.radius))
+    
+    def __repr__(self):
+        return("Circle({})".format(self.radius))
+
